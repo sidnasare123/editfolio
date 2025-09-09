@@ -60,7 +60,7 @@ input {
   font-size: 15px;
   background: none;
   border: 1px solid grey;
-  color: #fff;
+  color: #b6b6b6;
 }
 
 .submit {
@@ -190,11 +190,12 @@ form .label .tooltip b {
 
 textarea {
   background: none;
-  color: #fff;
   width: 100%;
   padding: 12px;
   border-radius: 5px;
   font-size: 15px;
   resize: none;
-  height: 150px;
+  height: 220px;
+  color: #b6b6b6;
+  line-height: 24px;
 }

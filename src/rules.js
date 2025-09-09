@@ -105,7 +105,7 @@ export const rules = (key, data) => {
     case "homepage_about":
       return (
         <div>
-          <LabelWrapper label="Short Bio:">
+          <LabelWrapper label="Homepage short bio:">
             <p>
               This is a short bio of you that appears on the <b>Homepage</b>.
               Keep it brief.<br></br> <br></br>
@@ -164,7 +164,7 @@ export const rules = (key, data) => {
         <div>
           <LabelWrapper label="Homepage quote:">
             <p>
-              This is a quote from the short bio that appears on the{" "}
+              This is the text that appears above the short bio in the{" "}
               <b>Homepage</b>.<br></br> <br></br>
               <u>
                 <b>Note:</b>
@@ -178,7 +178,6 @@ export const rules = (key, data) => {
               <u>
                 <i>Example:</i>
               </u>
-              <br></br>
               <br></br>
               <i>→ Hello man.&lt;br&gt;&lt;/br&gt;</i> How are you.
               <br></br>
@@ -198,13 +197,6 @@ export const rules = (key, data) => {
                 → I am a <b>&lt;b&gt;</b>scientist<b>&lt;/b&gt;</b> based in the
                 USA.
               </i>
-              <br></br>
-              <br></br>
-              <li>
-                Similarly, use <b>&lt;i&gt;</b> and <b>&lt;/i&gt;</b> for
-                italics, and <b>&lt;u&gt;</b> and <b>&lt;/u&gt;</b> for
-                underline.
-              </li>
             </p>
           </LabelWrapper>
           <textarea
@@ -229,7 +221,7 @@ export const rules = (key, data) => {
     case "about_me":
       return (
         <div>
-          <LabelWrapper label="About Me:">
+          <LabelWrapper label="About me:">
             <p>
               This is a short bio of you that appears on the <b>Homepage</b>.
               Keep it brief.<br></br> <br></br>
@@ -279,7 +271,7 @@ export const rules = (key, data) => {
             min={200}
             required
             autoComplete="about_me"
-            style={{ height: "400px" }}
+            style={{ height: "500px" }}
           />
         </div>
       );
