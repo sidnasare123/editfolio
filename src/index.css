@@ -3,3 +3,198 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px 150px 20px;
+  background: #191919;
+  color: #fff;
+}
+
+h1 {
+  font-size: 62px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+form h6 {
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 100px;
+}
+
+.input-block {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  border: 1px solid grey;
+  color: #fff;
+}
+
+.submit {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.submit .json {
+  border: none;
+  background: none;
+  color: #bababa;
+  display: block;
+  margin-left: auto;
+  margin-top: 10px;
+  border-bottom: 1px solid #bababa;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  background-image: linear-gradient(#42a1ec, #0070c9);
+  border: 1px solid #0077cc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 8px 15px;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.submit-btn:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.submit-btn:hover {
+  background-image: linear-gradient(#51a9ee, #147bcd);
+  border-color: #1482d0;
+  text-decoration: none;
+}
+
+.submit-btn:active {
+  background-image: linear-gradient(#3d94d9, #0067b9);
+  border-color: #006dbc;
+  outline: none;
+}
+
+.submit-btn:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+
+form .label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+}
+
+form .label .info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+form .label svg {
+  font-size: 18px;
+  color: #4a84ce;
+}
+
+form .label .tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  white-space: normal;
+  padding: 15px;
+  border-radius: 6px;
+  background: #4a84ce;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.4;
+  display: none;
+  z-index: 99;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  cursor: auto;
+}
+
+form .label .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #4a84ce transparent transparent transparent;
+}
+
+form .label .info:hover .tooltip {
+  display: block;
+  line-height: 20px;
+}
+
+form .label .tooltip b {
+  font-weight: 600;
+}
+
+textarea {
+  background: none;
+  color: #fff;
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 15px;
+  resize: none;
+  height: 150px;
+}
