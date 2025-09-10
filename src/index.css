@@ -430,6 +430,7 @@ input:disabled {
   right: 0;
   bottom: 0;
   background-color: #343434d7;
+  z-index: 9999;
 }
 
 .icon-container {

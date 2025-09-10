@@ -288,7 +288,7 @@ export const rules = (key, data) => {
               It highlights key milestones in your journey—such as the number of
               projects completed, overall professional experience, teaching
               experience (if any), and other notable achievements. You can
-              present these using numbers or brief summaries.
+              present these using numbers.
             </p>
           </LabelWrapper>
           <div className="highlights-container">
@@ -389,8 +389,48 @@ export const rules = (key, data) => {
     case "achievements":
       return (
         <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
+          <LabelWrapper label="Achievements & Recognitions:">
+            <p>
+              This section appears on the <b>About</b> page. You can add
+              achievements, notable certifications, memberships, and more here.
+            </p>
+          </LabelWrapper>
+          <div className="what_i_offer_container">
+            {data.achievements.map((item, idx) => {
+              return (
+                <div className="services-container" key={idx}>
+                  <div className="services-wrapper">
+                    <div className="row_1">
+                      <Icons icon={item.icon} />
+                      <input
+                        name="Service name"
+                        value={item.title}
+                        type="text"
+                        min={3}
+                        required
+                        autoComplete="off"
+                      />
+                    </div>
+                    <input
+                      name="Service description"
+                      type="text"
+                      min={3}
+                      required
+                      value={item.description}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <button type="button" className="close-btn">
+                    <IoClose />
+                  </button>
+                </div>
+              );
+            })}
+
+            <button type="button" className="new-service">
+              Add Achievement
+            </button>
+          </div>
         </div>
       );
 
