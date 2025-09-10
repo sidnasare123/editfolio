@@ -1,5 +1,6 @@
 import { FaCircleInfo } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import Icons from "./icons";
 
 export const rules = (key, data) => {
   switch (key) {
@@ -19,7 +20,7 @@ export const rules = (key, data) => {
             type="text"
             min={3}
             required
-            autoComplete="name"
+            autoComplete="off"
           />
         </div>
       );
@@ -38,7 +39,7 @@ export const rules = (key, data) => {
             type="text"
             min={3}
             required
-            autoComplete="title"
+            autoComplete="off"
           />
         </div>
       );
@@ -57,7 +58,7 @@ export const rules = (key, data) => {
             type="text"
             min={3}
             required
-            autoComplete="location"
+            autoComplete="off"
           />
         </div>
       );
@@ -70,7 +71,7 @@ export const rules = (key, data) => {
             value={data["email"]}
             type="email"
             required
-            autoComplete="email"
+            autoComplete="off"
           />
         </div>
       );
@@ -83,7 +84,7 @@ export const rules = (key, data) => {
             type="tel"
             value={data["phone"]}
             required
-            autoComplete="phone"
+            autoComplete="off"
           />
         </div>
       );
@@ -96,7 +97,7 @@ export const rules = (key, data) => {
             value={data["linkedin"]}
             type="url"
             required
-            autoComplete="linkedin"
+            autoComplete="off"
           />
         </div>
       );
@@ -140,7 +141,7 @@ export const rules = (key, data) => {
             type="text"
             min={100}
             required
-            autoComplete="short_bio"
+            autoComplete="off"
           />
         </div>
       );
@@ -158,7 +159,7 @@ export const rules = (key, data) => {
             value={data["resume"]}
             type="url"
             required
-            autoComplete="resume_url"
+            autoComplete="off"
           />
         </div>
       );
@@ -177,7 +178,7 @@ export const rules = (key, data) => {
             value={data["profile_pic"]}
             type="url"
             required
-            autoComplete="profile_pic_url"
+            autoComplete="off"
           />
         </div>
       );
@@ -227,19 +228,12 @@ export const rules = (key, data) => {
             type="text"
             min={30}
             required
-            autoComplete="quote"
+            autoComplete="off"
             style={{ height: "100px" }}
           />
         </div>
       );
 
-    case "what_i_offer":
-      return (
-        <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
-        </div>
-      );
     case "about_me":
       return (
         <div>
@@ -255,27 +249,15 @@ export const rules = (key, data) => {
               <li>
                 To go to the next line, use <b>&lt;br&gt;</b>
                 <b>&lt;/br&gt;</b>
-                <br></br>
-                If you want a 1-line gap, use two <b>&lt;br&gt;</b>
-                <b>&lt;/br&gt;</b> in a row.
               </li>
               <u>
                 <i>Example:</i>
               </u>
-              <br></br>
-              <i>
-                For a one-line gap, add two line breaks before the next
-                paragraph like this:
-              </i>
-              <br></br>
-              <br></br>
-              <i>→ Hello man.&lt;br&gt;&lt;/br&gt; &lt;br&gt;&lt;/br&gt;</i> How
-              are you.
+              <i>→ Hello man.&lt;br&gt;&lt;/br&gt;</i> How are you.
               <br></br>
               <br></br>
               Here, 'Hello man.' is the first paragraph. Then the <br></br> tags
-              create a blank line, and 'How are you.' is printed on the next
-              line.
+              create a blank line, and 'How are you.' is printed.
               <br></br>
               <br></br>
               <li>
@@ -292,7 +274,7 @@ export const rules = (key, data) => {
             type="text"
             min={200}
             required
-            autoComplete="about_me"
+            autoComplete="off"
             style={{ height: "500px" }}
           />
         </div>
@@ -319,7 +301,7 @@ export const rules = (key, data) => {
                   min={3}
                   required
                   placeholder="Highlight name"
-                  autoComplete="highlight_name"
+                  autoComplete="off"
                 />
                 <input
                   name="highlight_count"
@@ -327,24 +309,20 @@ export const rules = (key, data) => {
                   type="number"
                   required
                   placeholder="Count"
-                  autoComplete="highlight_count"
+                  autoComplete="off"
                 />
-                <button>
+                <button type="button">
                   <IoClose />
                 </button>
               </div>
             ))}
-            <button className="new-highlight">Add Highlight</button>
+            <button type="button" className="new-highlight">
+              Add Highlight
+            </button>
           </div>
         </div>
       );
-    case "experience":
-      return (
-        <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
-        </div>
-      );
+
     case "skills":
       return (
         <div>
@@ -364,7 +342,7 @@ export const rules = (key, data) => {
                   required
                   min={3}
                   placeholder="Skill name"
-                  autoComplete="skill_name"
+                  autoComplete="off"
                 />
                 <input
                   name="skill_count"
@@ -374,15 +352,24 @@ export const rules = (key, data) => {
                   min="1"
                   max="100"
                   placeholder="Count"
-                  autoComplete="skill_count"
+                  autoComplete="off"
                 />
-                <button>
+                <button type="button">
                   <IoClose />
                 </button>
               </div>
             ))}
-            <button className="new-skill">Add Skill</button>
+            <button type="button" className="new-skill">
+              Add Skill
+            </button>
           </div>
+        </div>
+      );
+    case "experience":
+      return (
+        <div>
+          <h6>Enter your name:</h6>
+          <input name="name" type="text" min={3} required autoComplete="name" />
         </div>
       );
     case "education":
@@ -399,13 +386,63 @@ export const rules = (key, data) => {
           <input name="name" type="text" min={3} required autoComplete="name" />
         </div>
       );
-    default:
+    case "achievements":
       return (
         <div>
           <h6>Enter your name:</h6>
           <input name="name" type="text" min={3} required autoComplete="name" />
         </div>
       );
+
+    case "what_i_offer":
+      return (
+        <div>
+          <LabelWrapper label="Services I offer:">
+            <p>
+              This is the section below projects in the <b>Homepage</b>. You can
+              add the services that you can offer.
+            </p>
+          </LabelWrapper>
+          <div className="what_i_offer_container">
+            {data.what_i_offer.map((item, idx) => {
+              return (
+                <div className="services-container" key={idx}>
+                  <div className="services-wrapper">
+                    <div className="row_1">
+                      <Icons icon={item.icon} />
+                      <input
+                        name="Service name"
+                        value={item.title}
+                        type="text"
+                        min={3}
+                        required
+                        autoComplete="off"
+                      />
+                    </div>
+                    <input
+                      name="Service description"
+                      type="text"
+                      min={3}
+                      required
+                      value={item.description}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <button type="button" className="close-btn">
+                    <IoClose />
+                  </button>
+                </div>
+              );
+            })}
+
+            <button type="button" className="new-service">
+              Add Service
+            </button>
+          </div>
+        </div>
+      );
+    default:
+      break;
   }
 };
 

@@ -12,7 +12,7 @@ export default function Wrapper() {
     setTimeout(() => {
       setIsLoading(false);
       setData(userData);
-    }, 40000);
+    }, 1000);
   }, []);
 
   const handleSubmit = (e) => {
