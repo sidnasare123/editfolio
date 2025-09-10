@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
+
 import userData from "./data.json";
 import { rules } from "./rules";
+import Loader from "./Loader";
 
 export default function Wrapper() {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    setData(userData);
+    setTimeout(() => {
+      setIsLoading(false);
+      setData(userData);
+    }, 40000);
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="wrapper">
       <form onSubmit={handleSubmit}>
         {Object.keys(data).map((item, idx) => (

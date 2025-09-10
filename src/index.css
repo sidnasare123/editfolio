@@ -362,3 +362,34 @@ input:disabled {
   cursor: wait !important;
   background: grey !important;
 }
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  opacity: 0.7;
+}
+
+.loader {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border: 3px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
