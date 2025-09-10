@@ -27,7 +27,9 @@ export default function App() {
           <button className="submit-btn" type="submit">
             Submit
           </button>
-          <button className="json">Download JSON</button>
+          <button className="json" type="button">
+            Download JSON
+          </button>
         </div>
       </form>
     </div>

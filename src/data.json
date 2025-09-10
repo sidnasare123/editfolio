@@ -12,49 +12,11 @@
   "profile_pic": "/img/profile.jpg",
 
   "highlights": [
-    { "name": "Lorem Ipsum", "count": "123" },
-    { "name": "Dolor Sit Amet", "count": "456" },
-    { "name": "Consectetur", "count": "789" },
-    { "name": "Adipiscing Elit", "count": "101" }
+    { "name": "Projects Completed", "count": "123" },
+    { "name": "Teaching hours", "count": "456" },
+    { "name": "Professional Experience in yrs", "count": "789" },
+    { "name": "Awards", "count": "10" }
   ],
-  "experience": [
-    {
-      "company": "Lorem Ipsum Corporation",
-      "role": "Dolor Sit Amet",
-      "duration": "Jan 2020 - Present",
-      "place": "Lorem, USA",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "company": "Dolor Consulting",
-      "role": "Consectetur Specialist",
-      "duration": "Mar 2019 - Dec 2019",
-      "place": "Ipsum, USA",
-      "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-      "company": "Amet University",
-      "role": "Teaching & Research Assistant",
-      "duration": "Sep 2017 – Feb 2019",
-      "place": "Dolor, USA",
-      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-    },
-    {
-      "company": "Consectetur Group",
-      "role": "Intern",
-      "duration": "Jul 2016 - Aug 2017",
-      "place": "Ipsum, India",
-      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-      "company": "Elit Design Labs",
-      "role": "Junior Intern",
-      "duration": "Jan 2015 - Jun 2016",
-      "place": "Lorem, India",
-      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-    }
-  ],
-
   "skills": [
     { "name": "Lorem Ipsum", "level": 90 },
     { "name": "Dolor Sit Amet", "level": 85 },
@@ -66,22 +28,51 @@
     { "name": "Tempor", "level": 78 }
   ],
 
+  "experience": [
+    {
+      "company": "Lorem Ipsum Corporation",
+      "role": "Dolor Sit Amet",
+      "duration": "Jan 2020 - Present",
+      "place": "Lorem, USA"
+    },
+    {
+      "company": "Dolor Consulting",
+      "role": "Consectetur Specialist",
+      "duration": "Mar 2019 - Dec 2019",
+      "place": "Ipsum, USA"
+    },
+    {
+      "company": "Amet University",
+      "role": "Teaching & Research Assistant",
+      "duration": "Sep 2017 – Feb 2019",
+      "place": "Dolor, USA"
+    },
+    {
+      "company": "Consectetur Group",
+      "role": "Intern",
+      "duration": "Jul 2016 - Aug 2017",
+      "place": "Ipsum, India"
+    },
+    {
+      "company": "Elit Design Labs",
+      "role": "Junior Intern",
+      "duration": "Jan 2015 - Jun 2016",
+      "place": "Lorem, India"
+    }
+  ],
+
   "education": [
     {
       "school": "Lorem Ipsum University",
       "degree": "Master of Dolor Sit Amet",
-      "gpa": "3.81",
       "duration": "May 2020",
-      "place": "Lorem, USA",
-      "courses": "Consectetur, Adipiscing, Elit"
+      "place": "Lorem, USA"
     },
     {
       "school": "Dolor Amet Institute",
       "degree": "Bachelor of Consectetur",
-      "gpa": "3.77",
       "duration": "May 2016",
-      "place": "Ipsum, India",
-      "courses": "Adipiscing, Elit, Sed Do"
+      "place": "Ipsum, India"
     }
   ],
 

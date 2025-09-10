@@ -1,4 +1,5 @@
 import { FaCircleInfo } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 export const rules = (key, data) => {
   switch (key) {
@@ -79,9 +80,8 @@ export const rules = (key, data) => {
           <h6>Phone number:</h6>
           <input
             name="phone"
-            type="text"
+            type="tel"
             value={data["phone"]}
-            min={3}
             required
             autoComplete="phone"
           />
@@ -94,8 +94,7 @@ export const rules = (key, data) => {
           <input
             name="linkedin"
             value={data["linkedin"]}
-            type="text"
-            min={3}
+            type="url"
             required
             autoComplete="linkedin"
           />
@@ -148,15 +147,38 @@ export const rules = (key, data) => {
     case "resume":
       return (
         <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
+          <LabelWrapper label="Resume URL:">
+            <p>
+              Upload the resume to Google Drive or another storage service and
+              provide the shareable link.
+            </p>
+          </LabelWrapper>
+          <input
+            name="resume_url"
+            value={data["resume"]}
+            type="url"
+            required
+            autoComplete="resume_url"
+          />
         </div>
       );
     case "profile_pic":
       return (
         <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
+          <LabelWrapper label="Profile image URL:">
+            <p>
+              This is the profile image that appears on the <b>About</b> page.
+              Upload the image to Google Drive or another storage service and
+              provide the shareable link.
+            </p>
+          </LabelWrapper>
+          <input
+            name="profile_pic_url"
+            value={data["profile_pic"]}
+            type="url"
+            required
+            autoComplete="profile_pic_url"
+          />
         </div>
       );
     case "homepage_quote":
@@ -278,8 +300,42 @@ export const rules = (key, data) => {
     case "highlights":
       return (
         <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
+          <LabelWrapper label="Highlights of your journey:">
+            <p>
+              This section appears below the short bio on the <b>Homepage</b>.
+              It highlights key milestones in your journey—such as the number of
+              projects completed, overall professional experience, teaching
+              experience (if any), and other notable achievements. You can
+              present these using numbers or brief summaries.
+            </p>
+          </LabelWrapper>
+          <div className="highlights-container">
+            {data.highlights.map((item, idx) => (
+              <div className="highlight" key={idx}>
+                <input
+                  name="highlight_name"
+                  value={item.name}
+                  type="text"
+                  min={3}
+                  required
+                  placeholder="Highlight name"
+                  autoComplete="highlight_name"
+                />
+                <input
+                  name="highlight_count"
+                  value={item.count}
+                  type="number"
+                  required
+                  placeholder="Count"
+                  autoComplete="highlight_count"
+                />
+                <button>
+                  <IoClose />
+                </button>
+              </div>
+            ))}
+            <button className="new-highlight">Add Highlight</button>
+          </div>
         </div>
       );
     case "experience":
@@ -292,8 +348,41 @@ export const rules = (key, data) => {
     case "skills":
       return (
         <div>
-          <h6>Enter your name:</h6>
-          <input name="name" type="text" min={3} required autoComplete="name" />
+          <LabelWrapper label="Skills:">
+            <p>
+              This section appears on the <b>About</b> page. It showcases your
+              skills. Add a skill and rate yourself on a scale of 0 to 100.
+            </p>
+          </LabelWrapper>
+          <div className="skills-container">
+            {data.skills.map((item, idx) => (
+              <div className="skill" key={idx}>
+                <input
+                  name="skill_name"
+                  value={item.name}
+                  type="text"
+                  required
+                  min={3}
+                  placeholder="Skill name"
+                  autoComplete="skill_name"
+                />
+                <input
+                  name="skill_count"
+                  value={item.level}
+                  type="number"
+                  required
+                  min="1"
+                  max="100"
+                  placeholder="Count"
+                  autoComplete="skill_count"
+                />
+                <button>
+                  <IoClose />
+                </button>
+              </div>
+            ))}
+            <button className="new-skill">Add Skill</button>
+          </div>
         </div>
       );
     case "education":
