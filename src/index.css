@@ -25,6 +25,10 @@ h4 {
   text-align: center;
 }
 
+header {
+  margin-bottom: 100px;
+}
+
 .wrapper {
   width: 100%;
   max-width: 700px;
@@ -46,7 +50,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-top: 100px;
 }
 
 .input-block {
@@ -291,4 +294,71 @@ input::-webkit-inner-spin-button {
   color: #ffffff;
   cursor: pointer;
   font-size: 12px;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-btn {
+  width: 100%;
+  background-image: linear-gradient(#42a1ec, #0070c9);
+  border: 1px solid #0077cc;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 8px 15px;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.login-btn:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+.login-btn:hover {
+  background-image: linear-gradient(#51a9ee, #147bcd);
+  border-color: #1482d0;
+  text-decoration: none;
+}
+
+.login-btn:active {
+  background-image: linear-gradient(#3d94d9, #0067b9);
+  border-color: #006dbc;
+  outline: none;
+}
+
+.login-btn:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+
+button:disabled,
+textarea:disabled,
+input:disabled {
+  cursor: not-allowed;
+  color: gray;
+}
+
+.login-btn:disabled,
+.submit-btn:disabled {
+  cursor: wait !important;
+  background: grey !important;
 }
