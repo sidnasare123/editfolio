@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import userData from "./data.json";
-import { rules } from "./rules";
+import Rules from "./rules";
 import Loader from "./Loader";
 
 export default function Wrapper() {
@@ -19,6 +19,18 @@ export default function Wrapper() {
     e.preventDefault();
   };
 
+  const handleDownload = () => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "data.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return isLoading ? (
     <Loader />
   ) : (
@@ -26,7 +38,7 @@ export default function Wrapper() {
       <form onSubmit={handleSubmit}>
         {Object.keys(data).map((item, idx) => (
           <div className="input-block" key={idx}>
-            {rules(item, data)}
+            <Rules input_name={item} data={data} setData={setData} />
           </div>
         ))}
 
@@ -34,7 +46,7 @@ export default function Wrapper() {
           <button className="submit-btn" type="submit">
             Submit
           </button>
-          <button className="json" type="button">
+          <button onClick={handleDownload} className="json" type="button">
             Download JSON
           </button>
         </div>
