@@ -45,7 +45,6 @@ h4 {
 }
 
 .header-msg {
-  color: gray;
   font-size: 14px;
   margin-bottom: 40px;
   background: #7db3da;
@@ -54,6 +53,18 @@ h4 {
   border-radius: 5px;
   width: 100%;
   text-align: center;
+}
+
+.error-note {
+  background: rgb(243, 74, 74);
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  padding: 20px 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
 }
 
 header {

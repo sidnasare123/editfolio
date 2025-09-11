@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import userData from "./data.json";
 import Rules from "./rules";
 import Loader from "./Loader";
 import { DATA_JSON_PATH } from "./constants";
@@ -9,6 +8,7 @@ import axios from "axios";
 export default function Wrapper() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -20,7 +20,7 @@ export default function Wrapper() {
         })
         .catch(() => {
           console.error("Error fetching data");
-          setData(userData);
+          setError(true);
         })
         .finally(setIsLoading(false));
     }
@@ -45,6 +45,11 @@ export default function Wrapper() {
 
   return isLoading ? (
     <Loader />
+  ) : error ? (
+    <p className="error-note">
+      Oops! Something went wrong while retrieving the data. Please refresh the
+      page or try again later.
+    </p>
   ) : (
     <div className="wrapper">
       <p className="header-msg">
