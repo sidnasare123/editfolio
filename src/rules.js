@@ -34,9 +34,9 @@ function Rules({ input_name, data, setData }) {
     case "skills":
       return <SkillsContainer data={data} setData={setData} />;
     case "experience":
-      return <ExperienceContainer />;
+      return <ExperienceContainer data={data} setData={setData} />;
     case "education":
-      return <EducationContainer />;
+      return <EducationContainer data={data} setData={setData} />;
     case "achievements":
       return <AchievementsContainer data={data} setData={setData} />;
     case "what_i_offer":
@@ -883,11 +883,123 @@ function ServicesContainer({ data, setData }) {
   );
 }
 
-function ExperienceContainer() {
+function ExperienceContainer({ data, setData }) {
+  function handleChange(e, idx, type) {
+    const new_data = { ...data };
+    const value = e.target.value;
+    if (type === "company") {
+      new_data["experience"][idx]["company"] = value;
+      setData(new_data);
+      return;
+    }
+
+    if (type === "role") {
+      new_data["experience"][idx]["role"] = value;
+      setData(new_data);
+      return;
+    }
+    if (type === "duration") {
+      new_data["experience"][idx]["duration"] = value;
+      setData(new_data);
+      return;
+    }
+
+    new_data["experience"][idx]["place"] = value;
+    setData(new_data);
+  }
+
+  function handleRemove(idx) {
+    const new_data = { ...data };
+    const new_achievement = new_data.experience.filter((_, i) => i !== idx);
+    new_data["experience"] = new_achievement;
+    setData(new_data);
+  }
+
+  function addExperience() {
+    const new_data = { ...data };
+    new_data.experience.push({
+      company: "",
+      role: "",
+      duration: "",
+      place: "",
+    });
+    setData(new_data);
+  }
+
   return (
     <div>
-      <h6>Enter your name:</h6>
-      <input name="name" type="text" min={3} required autoComplete="off" />
+      <LabelWrapper label="Experience:">
+        <p>
+          This section appears on the <b>About</b> page. You can add your work
+          experience here.
+        </p>
+      </LabelWrapper>
+      <div className="what_i_offer_container">
+        {data.experience.map((item, idx) => {
+          return (
+            <div className="services-container" key={idx}>
+              <div className="services-wrapper">
+                <div className="row_1">
+                  <input
+                    name="company_name"
+                    value={item.company}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter company name"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "company")}
+                  />
+                  <input
+                    name="company_role"
+                    value={item.role}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter role name"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "role")}
+                  />
+                </div>
+                <div className="row_1">
+                  <input
+                    name="company_duration"
+                    type="text"
+                    min={3}
+                    required
+                    value={item.duration}
+                    autoComplete="off"
+                    placeholder="Enter duration"
+                    onChange={(e) => handleChange(e, idx, "duration")}
+                  />
+                  <input
+                    name="company_place"
+                    value={item.place}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter location"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "place")}
+                  />
+                </div>
+              </div>
+              <button
+                onClick={() => handleRemove(idx)}
+                type="button"
+                className="close-btn"
+                title="remove"
+              >
+                <IoClose />
+              </button>
+            </div>
+          );
+        })}
+
+        <button onClick={addExperience} type="button" className="new-service">
+          Add Experience
+        </button>
+      </div>
     </div>
   );
 }
@@ -908,11 +1020,123 @@ function ProjectsContainer() {
   );
 }
 
-function EducationContainer() {
+function EducationContainer({ data, setData }) {
+  function handleChange(e, idx, type) {
+    const new_data = { ...data };
+    const value = e.target.value;
+    if (type === "school") {
+      new_data["education"][idx]["school"] = value;
+      setData(new_data);
+      return;
+    }
+
+    if (type === "degree") {
+      new_data["education"][idx]["degree"] = value;
+      setData(new_data);
+      return;
+    }
+    if (type === "duration") {
+      new_data["education"][idx]["duration"] = value;
+      setData(new_data);
+      return;
+    }
+
+    new_data["education"][idx]["place"] = value;
+    setData(new_data);
+  }
+
+  function handleRemove(idx) {
+    const new_data = { ...data };
+    const new_achievement = new_data.education.filter((_, i) => i !== idx);
+    new_data["education"] = new_achievement;
+    setData(new_data);
+  }
+
+  function addEducation() {
+    const new_data = { ...data };
+    new_data.education.push({
+      school: "",
+      degree: "",
+      duration: "",
+      place: "",
+    });
+    setData(new_data);
+  }
+
   return (
     <div>
-      <h6>Enter your name:</h6>
-      <input name="name" type="text" min={3} required autoComplete="off" />
+      <LabelWrapper label="Education:">
+        <p>
+          This section appears on the <b>About</b> page. You can add your
+          education journey here.
+        </p>
+      </LabelWrapper>
+      <div className="what_i_offer_container">
+        {data.education.map((item, idx) => {
+          return (
+            <div className="services-container" key={idx}>
+              <div className="services-wrapper">
+                <div className="row_1">
+                  <input
+                    name="school_name"
+                    value={item.school}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter school name"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "name")}
+                  />
+                  <input
+                    name="school_name"
+                    value={item.degree}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter degree name"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "degree")}
+                  />
+                </div>
+                <div className="row_1">
+                  <input
+                    name="school_duration"
+                    type="text"
+                    min={3}
+                    required
+                    value={item.duration}
+                    autoComplete="off"
+                    placeholder="Enter completion year"
+                    onChange={(e) => handleChange(e, idx, "duration")}
+                  />
+                  <input
+                    name="school_place"
+                    value={item.place}
+                    type="text"
+                    min={3}
+                    required
+                    placeholder="Enter location"
+                    autoComplete="off"
+                    onChange={(e) => handleChange(e, idx, "place")}
+                  />
+                </div>
+              </div>
+              <button
+                onClick={() => handleRemove(idx)}
+                type="button"
+                className="close-btn"
+                title="remove"
+              >
+                <IoClose />
+              </button>
+            </div>
+          );
+        })}
+
+        <button onClick={addEducation} type="button" className="new-service">
+          Add Education
+        </button>
+      </div>
     </div>
   );
 }

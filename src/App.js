@@ -40,7 +40,7 @@ export default function App() {
       </header>
       {loading ? (
         <Loader />
-      ) : isLogin ? (
+      ) : !isLogin ? (
         <Auth setIsLogin={setIsLogin} />
       ) : (
         <Wrapper />
