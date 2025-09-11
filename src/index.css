@@ -622,3 +622,9 @@ button.new-service {
 .upload-button-wrapper button:disabled {
   cursor: wait;
 }
+
+.success-message {
+  font-size: 14px;
+  color: #0077cc;
+  margin-top: 15px;
+}

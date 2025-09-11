@@ -269,6 +269,7 @@ function ResumeContainer({ data, setData }) {
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const generateURL = (url) => {
     url = url
@@ -283,13 +284,17 @@ function ResumeContainer({ data, setData }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) setFileSelected(file);
+    if (file) {
+      setFileSelected(file);
+      setMessage(null);
+    }
   };
 
   const upload = async () => {
     if (!fileSelected) return;
     setLoading(true);
     setError(false);
+    setMessage(null);
 
     const reader = new FileReader();
     reader.readAsBinaryString(fileSelected);
@@ -307,6 +312,7 @@ function ResumeContainer({ data, setData }) {
         const new_data = { ...data };
         new_data["resume"] = generateURL(data["resume"]);
         setData(new_data);
+        setMessage("Upload successful");
       } catch (err) {
         setError(true);
       } finally {
@@ -346,6 +352,7 @@ function ResumeContainer({ data, setData }) {
         )}
       </div>
       {error && <p className="upload-error">Upload failed. Try again</p>}
+      {message && <p className="success-message">{message}</p>}
     </div>
   );
 }
@@ -355,6 +362,7 @@ function ProfilePic({ data, setData }) {
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const generateURL = (url) => {
     url = url
@@ -369,14 +377,17 @@ function ProfilePic({ data, setData }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) setFileSelected(file);
+    if (file) {
+      setFileSelected(file);
+      setMessage(null);
+    }
   };
 
   const upload = async () => {
     if (!fileSelected) return;
     setLoading(true);
     setError(false);
-
+    setMessage(null);
     const reader = new FileReader();
     reader.readAsBinaryString(fileSelected);
     reader.onload = async () => {
@@ -393,6 +404,7 @@ function ProfilePic({ data, setData }) {
         const new_data = { ...data };
         new_data["profile_pic"] = generateURL(data["profile_pic"]);
         setData(new_data);
+        setMessage("Upload successful");
       } catch (err) {
         setError(true);
       } finally {
@@ -443,6 +455,7 @@ function ProfilePic({ data, setData }) {
         )}
       </div>
       {error && <p className="upload-error">Upload failed. Try again</p>}
+      {message && <p className="success-message">{message}</p>}
     </div>
   );
 }
