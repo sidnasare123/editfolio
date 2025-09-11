@@ -47,6 +47,10 @@ export default function Wrapper() {
     <Loader />
   ) : (
     <div className="wrapper">
+      <p className="header-msg">
+        <u>Note</u>: After making changes, it may take up to 3–5 minutes for
+        updates to appear on the portfolio website.
+      </p>
       <form onSubmit={handleSubmit}>
         {Object.keys(data).map((item, idx) => (
           <div className="input-block" key={idx}>

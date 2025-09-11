@@ -22,9 +22,9 @@ function Rules({ input_name, data, setData }) {
     case "homepage_about":
       return <HomepageAbout data={data} setData={setData} />;
     case "resume":
-      return <ResumeContainer data={data} setData={setData} />;
+      return <ResumeContainer />;
     case "profile_pic":
-      return <ProfilePic data={data} setData={setData} />;
+      return <ProfilePic />;
     case "homepage_quote":
       return <HomepageQuote data={data} setData={setData} />;
     case "about_me":
@@ -264,19 +264,12 @@ function LabelWrapper({ children, label }) {
   );
 }
 
-function ResumeContainer({ data, setData }) {
+function ResumeContainer() {
   const [fileSelected, setFileSelected] = useState(null);
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState(null);
-
-  const generateURL = (url) => {
-    url = url
-      .replace("https://github.com/", "https://raw.githubusercontent.com/")
-      .replace("/blob", "");
-    return `https://docs.google.com/viewer?url=${url}`;
-  };
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -308,10 +301,6 @@ function ResumeContainer({ data, setData }) {
         });
         setFileSelected(null);
         fileInputRef.current.value = null;
-
-        const new_data = { ...data };
-        new_data["resume"] = generateURL(data["resume"]);
-        setData(new_data);
         setMessage("Upload successful");
       } catch (err) {
         setError(true);
@@ -357,19 +346,12 @@ function ResumeContainer({ data, setData }) {
   );
 }
 
-function ProfilePic({ data, setData }) {
+function ProfilePic() {
   const [fileSelected, setFileSelected] = useState(null);
   const fileInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState(null);
-
-  const generateURL = (url) => {
-    url = url
-      .replace("https://github.com/", "https://raw.githubusercontent.com/")
-      .replace("/blob", "");
-    return `https://docs.google.com/viewer?url=${url}`;
-  };
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
@@ -400,10 +382,6 @@ function ProfilePic({ data, setData }) {
         });
         setFileSelected(null);
         fileInputRef.current.value = null;
-
-        const new_data = { ...data };
-        new_data["profile_pic"] = generateURL(data["profile_pic"]);
-        setData(new_data);
         setMessage("Upload successful");
       } catch (err) {
         setError(true);
