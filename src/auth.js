@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+import { JWT_TOKEN_KEY } from "./constants";
+
 export default function Auth({ setIsLogin }) {
   const [auth, setAuth] = useState({
     username: "",
@@ -25,7 +27,8 @@ export default function Auth({ setIsLogin }) {
         username: auth["username"],
         password: auth["password"],
       })
-      .then(() => {
+      .then(({ data }) => {
+        localStorage.setItem(JWT_TOKEN_KEY, data.token);
         setIsLogin(true);
       })
       .catch(() => {

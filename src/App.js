@@ -4,13 +4,13 @@ import axios from "axios";
 import Wrapper from "./wrapper";
 import Auth from "./auth";
 import Loader from "./Loader";
+import { JWT_TOKEN_KEY } from "./constants";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
-    const TOKEN_KEY = "EDITFOLIO_JWT_TOKEN";
     try {
       const token = localStorage.getItem(TOKEN_KEY);
       if (token) {
@@ -25,7 +25,7 @@ export default function App() {
           });
       }
     } catch (_) {
-      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(JWT_TOKEN_KEY);
     } finally {
       setLoading(false);
     }
