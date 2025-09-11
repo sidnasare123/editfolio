@@ -1,10 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Wrapper from "./wrapper";
 import Auth from "./auth";
+import Loader from "./Loader";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(async () => {
+    const TOKEN_KEY = "EDITFOLIO_JWT_TOKEN";
+    try {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (token) {
+        await axios
+          .post("/api/auth", null, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          .then(() => {
+            setIsLogin(true);
+          });
+      }
+    } catch (_) {
+      localStorage.removeItem(TOKEN_KEY);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   return (
     <>
@@ -12,7 +37,13 @@ export default function App() {
         <h1>Editfolio</h1>
         <h4>Edit your portfolio now. No Coding required.</h4>
       </header>
-      {!isLogin ? <Auth setIsLogin={setIsLogin} /> : <Wrapper />}
+      {loading ? (
+        <Loader />
+      ) : !isLogin ? (
+        <Auth setIsLogin={setIsLogin} />
+      ) : (
+        <Wrapper />
+      )}
     </>
   );
 }
