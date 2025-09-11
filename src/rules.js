@@ -263,15 +263,21 @@ function LabelWrapper({ children, label }) {
 }
 
 function ResumeContainer({ data, setData }) {
+  const generateURL = (url) => {
+    url = url
+      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+      .replace("/blob", "");
+    return url;
+  };
+
   const handleChange = (e) => {
     const new_data = { ...data };
     let value = e.target.value;
-    value = value
-      .replace("https://github.com/", "https://raw.githubusercontent.com/")
-      .replace("/blob", "");
+    value = generateURL(value);
     new_data["resume"] = value;
     setData(new_data);
   };
+
   return (
     <div>
       <LabelWrapper label="Resume URL:">
@@ -302,7 +308,7 @@ function ResumeContainer({ data, setData }) {
         name="resume_url"
         placeholder="Enter the resume link"
         onChange={handleChange}
-        value={data.resume}
+        value={generateURL(data.resume)}
         type="url"
         required
         autoComplete="off"
@@ -312,12 +318,17 @@ function ResumeContainer({ data, setData }) {
 }
 
 function ProfilePic({ data, setData }) {
+  const generateURL = (url) => {
+    url = url
+      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+      .replace("/blob", "");
+    return url;
+  };
+
   const handleChange = (e) => {
     const new_data = { ...data };
     let value = e.target.value;
-    value = value
-      .replace("https://github.com/", "https://raw.githubusercontent.com/")
-      .replace("/blob", "");
+    value = generateURL(value);
     new_data["profile_pic"] = value;
     setData(new_data);
   };
@@ -352,7 +363,7 @@ function ProfilePic({ data, setData }) {
         onChange={handleChange}
         name="profile_pic_url"
         placeholder="Enter the profile pic link"
-        value={data.profile_pic}
+        value={generateURL(data.profile_pic)}
         type="url"
         required
         autoComplete="off"

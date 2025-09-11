@@ -591,3 +591,9 @@ button.new-service {
 .external {
   color: #fff;
 }
+
+.login-error {
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}

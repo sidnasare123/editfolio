@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Auth({ setIsLogin }) {
   const [auth, setAuth] = useState({
@@ -6,6 +7,7 @@ export default function Auth({ setIsLogin }) {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleOnChange = (type, e) => {
     const data = { ...auth };
@@ -14,10 +16,22 @@ export default function Auth({ setIsLogin }) {
     setAuth(data);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setIsLogin(true);
+    setError(null);
+    await axios
+      .post("/api/auth", {
+        username: auth["username"],
+        password: auth["password"],
+      })
+      .then(() => {
+        setIsLogin(true);
+      })
+      .catch(() => {
+        setLoading(false);
+        setError("Invalid Username/Password");
+      });
   };
 
   return (
@@ -47,6 +61,7 @@ export default function Auth({ setIsLogin }) {
       <button className="login-btn" type="submit" disabled={loading}>
         Login
       </button>
+      {error && <p className="login-error">{error}</p>}
     </form>
   );
 }
