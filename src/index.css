@@ -597,3 +597,28 @@ button.new-service {
   text-align: center;
   font-size: 14px;
 }
+
+.upload-button-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-button-wrapper button {
+  padding: 8px 10px;
+  background-image: linear-gradient(#42a1ec, #0070c9);
+  border: 1px solid #0077cc;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.upload-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.upload-button-wrapper button:disabled {
+  cursor: wait;
+}

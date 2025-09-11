@@ -3,16 +3,28 @@ import { useEffect, useState } from "react";
 import userData from "./data.json";
 import Rules from "./rules";
 import Loader from "./Loader";
+import { DATA_JSON_PATH } from "./constants";
+import axios from "axios";
 
 export default function Wrapper() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      setData(userData);
-    }, 1000);
+    async function getData() {
+      await axios
+        .get(DATA_JSON_PATH)
+        .then((response) => {
+          const data = response.data;
+          setData(data);
+        })
+        .catch(() => {
+          console.error("Error fetching data");
+          setData(userData);
+        })
+        .finally(setIsLoading(false));
+    }
+    getData();
   }, []);
 
   const handleSubmit = (e) => {

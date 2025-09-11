@@ -1,5 +1,7 @@
 import { FaCircleInfo } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import { useRef, useState } from "react";
+import axios from "axios";
 
 import Icons from "./icons";
 
@@ -263,111 +265,184 @@ function LabelWrapper({ children, label }) {
 }
 
 function ResumeContainer({ data, setData }) {
+  const [fileSelected, setFileSelected] = useState(null);
+  const fileInputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const generateURL = (url) => {
     url = url
       .replace("https://github.com/", "https://raw.githubusercontent.com/")
       .replace("/blob", "");
-    return url;
+    return `https://docs.google.com/viewer?url=${url}`;
   };
 
-  const handleChange = (e) => {
-    const new_data = { ...data };
-    let value = e.target.value;
-    value = generateURL(value);
-    new_data["resume"] = value;
-    setData(new_data);
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) setFileSelected(file);
+  };
+
+  const upload = async () => {
+    if (!fileSelected) return;
+    setLoading(true);
+    setError(false);
+
+    const reader = new FileReader();
+    reader.readAsBinaryString(fileSelected);
+    reader.onload = async () => {
+      const base64Content = btoa(reader.result);
+      try {
+        await axios.post("/api/pushFile", {
+          path: "resume/resume.pdf",
+          content: base64Content,
+          commitMessage: "Update resume",
+        });
+        setFileSelected(null);
+        fileInputRef.current.value = null;
+
+        const new_data = { ...data };
+        new_data["resume"] = generateURL(data["resume"]);
+        setData(new_data);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    reader.onerror = () => {
+      setError(true);
+      setLoading(false);
+    };
   };
 
   return (
     <div>
-      <LabelWrapper label="Resume URL:">
+      <LabelWrapper label="Upload resume:">
         <p>
-          Upload your resume to the storage space in the{" "}
-          <a
-            className="external"
-            href="https://github.com/prempritam888/portfolio-assets/tree/main/resume"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          , then copy the link to your file and paste it into the input field.
-          For step-by-step guidance, follow the{" "}
-          <a
-            className="external"
-            href="https://github.com/prempritam888/portfolio-assets/tree/main/resume"
-            target="_blank"
-            rel="noreferrer"
-          >
-            tutorial
-          </a>
-          .
+          Upload your resume (only PDF). It's found in the <b>About</b> page.
         </p>
       </LabelWrapper>
-      <input
-        name="resume_url"
-        placeholder="Enter the resume link"
-        onChange={handleChange}
-        value={generateURL(data.resume)}
-        type="url"
-        required
-        autoComplete="off"
-      />
+      <div className="upload-button-wrapper">
+        <button disabled={loading} type="button" onClick={handleButtonClick}>
+          Select Resume
+        </button>
+        <input
+          type="file"
+          accept="application/pdf"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+          disabled={loading}
+        />
+        {fileSelected && (
+          <button disabled={loading} onClick={upload} type="button">
+            Upload
+          </button>
+        )}
+      </div>
+      {error && <p className="upload-error">Upload failed. Try again</p>}
     </div>
   );
 }
 
 function ProfilePic({ data, setData }) {
+  const [fileSelected, setFileSelected] = useState(null);
+  const fileInputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const generateURL = (url) => {
     url = url
       .replace("https://github.com/", "https://raw.githubusercontent.com/")
       .replace("/blob", "");
-    return url;
+    return `https://docs.google.com/viewer?url=${url}`;
   };
 
-  const handleChange = (e) => {
-    const new_data = { ...data };
-    let value = e.target.value;
-    value = generateURL(value);
-    new_data["profile_pic"] = value;
-    setData(new_data);
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
   };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) setFileSelected(file);
+  };
+
+  const upload = async () => {
+    if (!fileSelected) return;
+    setLoading(true);
+    setError(false);
+
+    const reader = new FileReader();
+    reader.readAsBinaryString(fileSelected);
+    reader.onload = async () => {
+      const base64Content = btoa(reader.result);
+      try {
+        await axios.post("/api/pushFile", {
+          path: "profile/profile.jpg",
+          content: base64Content,
+          commitMessage: "Update profile image",
+        });
+        setFileSelected(null);
+        fileInputRef.current.value = null;
+
+        const new_data = { ...data };
+        new_data["profile_pic"] = generateURL(data["profile_pic"]);
+        setData(new_data);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    reader.onerror = () => {
+      setError(true);
+      setLoading(false);
+    };
+  };
+
   return (
     <div>
-      <LabelWrapper label="Profile image URL:">
+      <LabelWrapper label="Upload profile pic:">
         <p>
-          This is the profile image that appears on the <b>About</b> page.
-          Upload your profile picture to the storage space in the{" "}
+          Upload your profile picture here. You can find it on the <b>About</b>{" "}
+          page. A smaller image size will help the picture load faster on the
+          website. To reduce the image size, use{" "}
           <a
             className="external"
-            href="https://github.com/prempritam888/portfolio-assets/tree/main/profile"
+            href="https://tinypng.com/"
             target="_blank"
             rel="noreferrer"
           >
-            GitHub
-          </a>
-          , then copy the link to your file and paste it into the input field.
-          For step-by-step guidance, follow the{" "}
-          <a
-            className="external"
-            href="https://github.com/prempritam888/portfolio-assets/tree/main/profile"
-            target="_blank"
-            rel="noreferrer"
-          >
-            tutorial
+            TinyPNG
           </a>
           .
         </p>
       </LabelWrapper>
-      <input
-        onChange={handleChange}
-        name="profile_pic_url"
-        placeholder="Enter the profile pic link"
-        value={generateURL(data.profile_pic)}
-        type="url"
-        required
-        autoComplete="off"
-      />
+      <div className="upload-button-wrapper">
+        <button disabled={loading} type="button" onClick={handleButtonClick}>
+          Select Image
+        </button>
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+          disabled={loading}
+        />
+        {fileSelected && (
+          <button disabled={loading} onClick={upload} type="button">
+            Upload
+          </button>
+        )}
+      </div>
+      {error && <p className="upload-error">Upload failed. Try again</p>}
     </div>
   );
 }
