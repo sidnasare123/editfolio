@@ -10,25 +10,26 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
-    try {
-      const token = localStorage.getItem(TOKEN_KEY);
-      if (token) {
-        await axios
-          .post("/api/auth", null, {
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem(JWT_TOKEN_KEY);
+        if (token) {
+          await axios.post("/api/auth", null, {
             headers: {
               Authorization: `${token}`,
             },
-          })
-          .then(() => {
-            setIsLogin(true);
           });
+          setIsLogin(true);
+        }
+      } catch (_) {
+        localStorage.removeItem(JWT_TOKEN_KEY);
+      } finally {
+        setLoading(false);
       }
-    } catch (_) {
-      localStorage.removeItem(JWT_TOKEN_KEY);
-    } finally {
-      setLoading(false);
-    }
+    };
+
+    checkAuth();
   }, []);
 
   return (
