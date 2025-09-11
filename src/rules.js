@@ -1085,7 +1085,7 @@ function EducationContainer({ data, setData }) {
                     required
                     placeholder="Enter school name"
                     autoComplete="off"
-                    onChange={(e) => handleChange(e, idx, "name")}
+                    onChange={(e) => handleChange(e, idx, "school")}
                   />
                   <input
                     name="school_name"
