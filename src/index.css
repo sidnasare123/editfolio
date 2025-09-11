@@ -587,3 +587,7 @@ button.new-service {
   cursor: pointer;
   font-size: 12px;
 }
+
+.external {
+  color: #fff;
+}

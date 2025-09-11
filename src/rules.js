@@ -35,12 +35,12 @@ function Rules({ input_name, data, setData }) {
       return <ExperienceContainer />;
     case "education":
       return <EducationContainer />;
-    case "projects":
-      return <ProjectsContainer />;
     case "achievements":
       return <AchievementsContainer data={data} setData={setData} />;
     case "what_i_offer":
       return <ServicesContainer data={data} setData={setData} />;
+    case "projects":
+      return <ProjectsContainer />;
     default:
       break;
   }
@@ -265,15 +265,37 @@ function LabelWrapper({ children, label }) {
 function ResumeContainer({ data, setData }) {
   const handleChange = (e) => {
     const new_data = { ...data };
-    new_data["resume"] = e.target.value;
+    let value = e.target.value;
+    value = value
+      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+      .replace("/blob", "");
+    new_data["resume"] = value;
     setData(new_data);
   };
   return (
     <div>
       <LabelWrapper label="Resume URL:">
         <p>
-          Upload the resume to Google Drive or another storage service and
-          provide the shareable link.
+          Upload your resume to the storage space in the{" "}
+          <a
+            className="external"
+            href="https://github.com/prempritam888/portfolio-assets/tree/main/resume"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+          , then copy the link to your file and paste it into the input field.
+          For step-by-step guidance, follow the{" "}
+          <a
+            className="external"
+            href="https://github.com/prempritam888/portfolio-assets/tree/main/resume"
+            target="_blank"
+            rel="noreferrer"
+          >
+            tutorial
+          </a>
+          .
         </p>
       </LabelWrapper>
       <input
@@ -284,7 +306,6 @@ function ResumeContainer({ data, setData }) {
         type="url"
         required
         autoComplete="off"
-        disabled
       />
     </div>
   );
@@ -293,7 +314,11 @@ function ResumeContainer({ data, setData }) {
 function ProfilePic({ data, setData }) {
   const handleChange = (e) => {
     const new_data = { ...data };
-    new_data["profile_pic"] = e.target.value;
+    let value = e.target.value;
+    value = value
+      .replace("https://github.com/", "https://raw.githubusercontent.com/")
+      .replace("/blob", "");
+    new_data["profile_pic"] = value;
     setData(new_data);
   };
   return (
@@ -301,8 +326,26 @@ function ProfilePic({ data, setData }) {
       <LabelWrapper label="Profile image URL:">
         <p>
           This is the profile image that appears on the <b>About</b> page.
-          Upload the image to Google Drive or another storage service and
-          provide the shareable link.
+          Upload your profile picture to the storage space in the{" "}
+          <a
+            className="external"
+            href="https://github.com/prempritam888/portfolio-assets/tree/main/profile"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+          , then copy the link to your file and paste it into the input field.
+          For step-by-step guidance, follow the{" "}
+          <a
+            className="external"
+            href="https://github.com/prempritam888/portfolio-assets/tree/main/profile"
+            target="_blank"
+            rel="noreferrer"
+          >
+            tutorial
+          </a>
+          .
         </p>
       </LabelWrapper>
       <input
@@ -313,7 +356,6 @@ function ProfilePic({ data, setData }) {
         type="url"
         required
         autoComplete="off"
-        disabled
       />
     </div>
   );
