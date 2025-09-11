@@ -36,9 +36,10 @@ export default function Wrapper() {
     setIsSubmit(true);
     setSubmissionError(false);
     setSubmissionSuccess(false);
-    const base64Content = btoa(JSON.stringify(data, null, 2));
 
     try {
+      const jsonStr = JSON.stringify(data, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
       await axios.post("/api/newfile", {
         path: "data/data.json",
         content: base64Content,
