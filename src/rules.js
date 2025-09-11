@@ -296,7 +296,7 @@ function ResumeContainer({ data, setData }) {
     reader.onload = async () => {
       const base64Content = btoa(reader.result);
       try {
-        await axios.post("/api/pushFile", {
+        await axios.post("/api/newfile", {
           path: "resume/resume.pdf",
           content: base64Content,
           commitMessage: "Update resume",
@@ -382,7 +382,7 @@ function ProfilePic({ data, setData }) {
     reader.onload = async () => {
       const base64Content = btoa(reader.result);
       try {
-        await axios.post("/api/pushFile", {
+        await axios.post("/api/newfile", {
           path: "profile/profile.jpg",
           content: base64Content,
           commitMessage: "Update profile image",
