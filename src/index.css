@@ -651,3 +651,28 @@ button.new-service {
   color: #0077cc;
   margin-top: 15px;
 }
+
+.submission-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00000076;
+  z-index: 99999999;
+  cursor: wait;
+}
+
+.submit-success {
+  color: #0077cc;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.submit-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
