@@ -4,7 +4,7 @@ import * as FaIcons from "react-icons/fa";
 import { IoClose, IoSearch } from "react-icons/io5";
 import * as MdIcons from "react-icons/md";
 
-export default function Icons({ icon = "" }) {
+export default function Icons({ icon = "", data, setData, opt, index }) {
   const [open, setOpen] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(icon);
 
@@ -15,6 +15,13 @@ export default function Icons({ icon = "" }) {
     else if (item.startsWith("Md")) Icon = MdIcons[item];
     else return "";
     return <Icon />;
+  };
+
+  const updateData = (name) => {
+    const new_data = { ...data };
+    new_data[opt][index].icon = name;
+    setSelectedIcon(name);
+    setData(new_data);
   };
 
   return (
@@ -29,7 +36,7 @@ export default function Icons({ icon = "" }) {
       {open && (
         <IconModel
           selectedIcon={selectedIcon}
-          setSelectedIcon={setSelectedIcon}
+          updateData={updateData}
           setOpen={setOpen}
           handleSelection={handleSelection}
         />
@@ -38,12 +45,7 @@ export default function Icons({ icon = "" }) {
   );
 }
 
-function IconModel({
-  selectedIcon,
-  setSelectedIcon,
-  setOpen,
-  handleSelection,
-}) {
+function IconModel({ selectedIcon, updateData, setOpen, handleSelection }) {
   const [search, setSearch] = useState("");
   const iconKeys = Object.keys({ ...FaIcons, ...MdIcons });
   return (
@@ -74,7 +76,7 @@ function IconModel({
                       className={`${
                         item === selectedIcon ? "icon-selected" : ""
                       }`}
-                      onClick={() => setSelectedIcon(item)}
+                      onClick={() => updateData(item)}
                       key={idx}
                     >
                       {handleSelection(item)}

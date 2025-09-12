@@ -753,7 +753,13 @@ function AchievementsContainer({ data, setData }) {
             <div className="services-container" key={idx}>
               <div className="services-wrapper">
                 <div className="row_1">
-                  <Icons icon={item.icon} />
+                  <Icons
+                    icon={item.icon}
+                    data={data}
+                    setData={setData}
+                    opt="achievements"
+                    index={idx}
+                  />
                   <input
                     name="achievement_name"
                     value={item.title}
@@ -840,7 +846,13 @@ function ServicesContainer({ data, setData }) {
             <div className="services-container" key={idx}>
               <div className="services-wrapper">
                 <div className="row_1">
-                  <Icons icon={item.icon} />
+                  <Icons
+                    icon={item.icon}
+                    data={data}
+                    setData={setData}
+                    opt="what_i_offer"
+                    index={idx}
+                  />
                   <input
                     name="service_name"
                     value={item.title}
