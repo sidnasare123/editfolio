@@ -1,5 +1,5 @@
 const CONTENT_PATH =
-  "https://api.github.com/repos/prempritam888/portfolio-assets/contents";
+  "https://api.github.com/repos/sidnasare123/portfolio-assets/contents";
 
 export default async function handler(req, res) {
   if (req.method !== "POST")
